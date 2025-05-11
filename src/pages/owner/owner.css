@@ -1,0 +1,1537 @@
+.owner-header-container {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.owner-header-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.owner-header-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.owner-header-link {
+  color: white;
+  border: 1px solid #000;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.owner-header-link:hover {
+  color: gray;
+  text-decoration: underline;
+}
+
+/* Vehicle MAnagement */
+
+:root {
+  --primary: #000000;
+  --secondary: #333333;
+  --accent: #0d00ff;
+  --error: #DC2626;
+  --success: #10B981;
+  --light-gray: #F3F4F6;
+  --medium-gray: #E5E7EB;
+  --dark-gray: #6B7280;
+  --white: #FFFFFF;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Page Container */
+.owner-vehicle-manage-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Main Content */
+.owner-vehicle-manage-main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.owner-vehicle-manage-main-content p {
+  color: var(--dark-gray);
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+/* Form Styles */
+/* Image Upload Styles */
+.owner-vehicle-manage-image-upload {
+  margin-bottom: 1rem;
+}
+
+.owner-vehicle-manage-image-upload label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.owner-vehicle-manage-image-preview {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.owner-vehicle-manage-image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Vehicle Card Image */
+.owner-vehicle-manage-vehicle-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.owner-vehicle-manage-vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.owner-vehicle-manage-vehicle-card:hover .owner-vehicle-manage-vehicle-image img {
+  transform: scale(1.05);
+}
+
+/* Action Buttons Container */
+.owner-vehicle-manage-action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Additional Form Styling */
+.owner-vehicle-manage-main-content input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  background-color: var(--white);
+}
+.owner-vehicle-manage-main-content form {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+  animation: scaleIn 0.5s ease-out 0.4s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.owner-vehicle-manage-main-content input,
+.owner-vehicle-manage-select,
+.owner-vehicle-manage-textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.owner-vehicle-manage-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.owner-vehicle-manage-main-content input:focus,
+.owner-vehicle-manage-select:focus,
+.owner-vehicle-manage-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 0, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.owner-vehicle-manage-submit-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.owner-vehicle-manage-submit-btn:hover {
+  background-color: var(--secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Vehicles List */
+.owner-vehicle-manage-vehicles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease-out 0.5s both;
+}
+
+.owner-vehicle-manage-vehicle-card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.owner-vehicle-manage-vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.owner-vehicle-manage-vehicle-card h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.owner-vehicle-manage-vehicle-card p {
+  margin: 0.5rem 0;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.owner-vehicle-manage-vehicle-status {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.owner-vehicle-manage-vehicle-status.available {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.owner-vehicle-manage-vehicle-status.not-available {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+}
+
+.owner-vehicle-manage-showform-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.owner-vehicle-manage-showform-btn:hover {
+  background-color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cancel Button */
+.owner-vehicle-manage-cancel-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--light-gray);
+  color: var(--primary);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.owner-vehicle-manage-cancel-btn:hover {
+  background-color: var(--dark-gray);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ripple Effect for Both Buttons */
+.owner-vehicle-manage-showform-btn,
+.owner-vehicle-manage-cancel-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.owner-vehicle-manage-showform-btn::after,
+.owner-vehicle-manage-cancel-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.owner-vehicle-manage-showform-btn:focus:not(:active)::after,
+.owner-vehicle-manage-cancel-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+
+/* Action Buttons */
+.owner-vehicle-manage-edit-btn,
+.owner-vehicle-manage-delete-btn {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.owner-vehicle-manage-edit-btn {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+.owner-vehicle-manage-delete-btn {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.owner-vehicle-manage-edit-btn:hover,
+.owner-vehicle-manage-delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.owner-vehicle-manage-edit-btn:active,
+.owner-vehicle-manage-delete-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .owner-vehicle-manage-main-content {
+    padding: 1.5rem;
+  }
+  
+  .owner-vehicle-manage-vehicles-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .owner-vehicle-manage-main-content form {
+    padding: 1.5rem;
+  }
+  
+  .owner-vehicle-manage-submit-btn {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  .owner-vehicle-manage-vehicle-card {
+    padding: 1.2rem;
+  }
+}
+
+/* Ripple Effect */
+.owner-vehicle-manage-submit-btn,
+.owner-vehicle-manage-edit-btn,
+.owner-vehicle-manage-delete-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.owner-vehicle-manage-submit-btn::after,
+.owner-vehicle-manage-edit-btn::after,
+.owner-vehicle-manage-delete-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.owner-vehicle-manage-submit-btn:focus:not(:active)::after,
+.owner-vehicle-manage-edit-btn:focus:not(:active)::after,
+.owner-vehicle-manage-delete-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* profile */
+:root {
+  --primary: #000000;
+  --secondary: #333333;
+  --accent: #0d00ff;
+  --error: #DC2626;
+  --light-gray: #F3F4F6;
+  --medium-gray: #E5E7EB;
+  --dark-gray: #6B7280;
+  --white: #FFFFFF;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.owner-profile-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.owner-profile-main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.owner-profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--primary);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+  animation: scaleIn 0.5s ease-out 0.3s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.owner-profile-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.owner-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.owner-profile-photo:hover img {
+  transform: scale(1.1);
+}
+
+.owner-profile-info {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+.owner-profile-info h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  animation: slideDown 0.5s ease-out 0.5s both;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.owner-profile-info p {
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: var(--dark-gray);
+  text-align: left;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--medium-gray);
+  transition: var(--transition);
+}
+
+.owner-profile-info strong {
+  color: var(--primary);
+  min-width: 100px;
+  display: inline-block;
+}
+
+.owner-profile-info input,
+.owner-profile-info select {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.owner-profile-info input:focus,
+.owner-profile-info select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(13, 0, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.owner-profile-info button {
+  padding: 0.8rem 1.5rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.owner-profile-info button:first-of-type {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.owner-profile-info button:last-of-type {
+  background-color: var(--light-gray);
+  color: var(--secondary);
+}
+
+.owner-profile-info button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.owner-profile-info button:active {
+  transform: translateY(0);
+}
+
+.owner-profile-info button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.owner-profile-info button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.owner-profile-info input[type="file"] {
+  padding: 0.5rem;
+  border: 1px dashed var(--medium-gray);
+  background-color: var(--light-gray);
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+.owner-profile-info input[type="file"]:hover {
+  border-color: var(--accent);
+  background-color: rgba(13, 0, 255, 0.05);
+}
+
+/* Mode transition */
+.owner-profile-info > * {
+  transition: var(--transition);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .owner-profile-main-content {
+    padding: 1rem;
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .owner-profile-info {
+    padding: 1.5rem;
+  }
+  
+  .owner-profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .owner-profile-info {
+    padding: 1rem;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .owner-profile-info h1 {
+    font-size: 1.5rem;
+    animation: slideDown 0.5s ease-out;
+  }
+  
+  .owner-profile-info button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Booking Management new */
+
+/* Booking Management Styles */
+.owner-booking-manage-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.owner-booking-manage-main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.owner-booking-manage-title {
+  color: var(--primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+.owner-booking-manage-section-title {
+  color: white;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--medium-gray);
+  padding-bottom: 0.5rem;
+}
+
+.owner-booking-manage-pending-section,
+.owner-booking-manage-processed-section {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  animation: scaleIn 0.5s ease-out 0.4s both;
+}
+
+.owner-booking-manage-processed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.owner-booking-manage-filter-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--secondary);
+}
+
+.owner-booking-manage-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.owner-booking-manage-cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.owner-booking-manage-card {
+  background-color: var(--light-gray);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.owner-booking-manage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.owner-booking-manage-card.pending {
+  border-left: 4px solid var(--accent);
+}
+
+.owner-booking-manage-card.processed {
+  border-left: 4px solid var(--dark-gray);
+}
+
+.owner-booking-manage-vehicle-name {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.owner-booking-manage-status {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.owner-booking-manage-status-pending {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.owner-booking-manage-status.approved {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.owner-booking-manage-status.rejected {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+}
+
+.owner-booking-manage-action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.owner-booking-manage-approve-btn,
+.owner-booking-manage-reject-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.owner-booking-manage-approve-btn {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.owner-booking-manage-reject-btn {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.owner-booking-manage-approve-btn:hover,
+.owner-booking-manage-reject-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.owner-booking-manage-approve-btn:active,
+.owner-booking-manage-reject-btn:active {
+  transform: translateY(0);
+}
+
+.owner-booking-manage-no-bookings {
+  color: var(--dark-gray);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Ripple Effect */
+.owner-booking-manage-approve-btn::after,
+.owner-booking-manage-reject-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.owner-booking-manage-approve-btn:focus:not(:active)::after,
+.owner-booking-manage-reject-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .owner-booking-manage-main-content {
+    padding: 1.5rem;
+  }
+  
+  .owner-booking-manage-cards-grid,
+  .owner-booking-manage-cards-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .owner-booking-manage-processed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .owner-booking-manage-pending-section,
+  .owner-booking-manage-processed-section {
+    padding: 1.5rem;
+  }
+  
+  .owner-booking-manage-action-buttons {
+    flex-direction: column;
+  }
+  
+  .owner-booking-manage-approve-btn,
+  .owner-booking-manage-reject-btn {
+    width: 100%;
+  }
+}
+
+/* home new owner*/
+/* Owner Home Page - Two Column Layout */
+.owner-home-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+.owner-home-vehicle-column,
+.owner-home-booking-column {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.owner-home-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.owner-home-section-header h2 {
+  color: var(--primary);
+  margin: 0;
+}
+
+.owner-home-add-btn,
+.owner-home-view-all-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.owner-home-add-btn {
+  background-color: var(--light-gray);
+  color: var(--primary);
+}
+
+.owner-home-view-all-btn {
+  background-color: var(--light-gray);
+  color: var(--primary);
+}
+
+.owner-home-add-btn:hover {
+  background-color: var(--medium-gray);
+}
+
+.owner-home-view-all-btn:hover {
+  background-color: var(--medium-gray);
+}
+
+/* Vehicle Grid */
+.owner-home-vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.owner-home-vehicle-card {
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.owner-home-vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.owner-home-vehicle-image {
+  height: 120px;
+  overflow: hidden;
+}
+
+.owner-home-vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.owner-home-vehicle-card:hover .owner-home-vehicle-image img {
+  transform: scale(1.05);
+}
+
+.owner-home-vehicle-info {
+  padding: 1rem;
+}
+
+.owner-home-vehicle-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+}
+
+.owner-home-vehicle-info p {
+  margin: 0;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.owner-home-vehicle-status {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.owner-home-vehicle-status.available {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.owner-home-vehicle-status.not-available {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+}
+
+/* Booking List */
+.owner-home-booking-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.owner-home-booking-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.owner-home-booking-card:hover {
+  background-color: var(--light-gray);
+}
+
+.booking-info h4 {
+  margin: 0 0 0.25rem 0;
+  color: var(--primary);
+}
+
+.booking-info p {
+  margin: 0;
+  color: var(--dark-gray);
+  font-size: 0.85rem;
+}
+
+.owner-home-booking-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.owner-home-booking-status.pending {
+  background-color: rgba(13, 0, 255, 0.1);
+  color: var(--accent);
+}
+
+/* Empty States */
+.owner-home-empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--dark-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .owner-home-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .owner-home-vehicle-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .owner-home-main-content {
+    padding: 1.5rem;
+  }
+  
+  .owner-home-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .owner-home-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .owner-home-vehicle-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .owner-home-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .owner-home-add-btn,
+  .owner-home-view-all-btn {
+    width: 100%;
+  }
+}
+/* Owner Home Page Styles */
+
+
+.owner-home-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.owner-home-main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.owner-home-header {
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+.owner-home-welcome {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.owner-home-intro {
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+}
+
+/* Stats Grid */
+.owner-home-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  animation: scaleIn 0.5s ease-out 0.4s both;
+}
+
+.owner-home-stat-card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.owner-home-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.owner-home-stat-card.total-vehicles {
+  border-left: 4px solid var(--accent);
+}
+
+.owner-home-stat-card.pending-bookings {
+  border-left: 4px solid #FFA500;
+}
+
+.owner-home-stat-card.approved-bookings {
+  border-left: 4px solid var(--success);
+}
+
+.owner-home-stat-card.rejected-bookings {
+  border-left: 4px solid var(--error);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.stat-content h3 {
+  color: var(--secondary);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-content p {
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Dashboard Actions */
+.owner-home-dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  animation: scaleIn 0.5s ease-out 0.5s both;
+}
+
+.owner-home-action-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.owner-home-action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--light-gray);
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.card-header h3 {
+  color: var(--primary);
+  margin: 0;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-content {
+  padding: 1.5rem;
+  min-height: 150px;
+}
+
+.owner-home-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.owner-home-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.owner-home-list-item:last-child {
+  border-bottom: none;
+}
+
+.vehicle-number, .booking-vehicle {
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.owner-home-list-more {
+  padding: 0.75rem 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.owner-home-empty {
+  color: var(--dark-gray);
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.owner-home-action-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.owner-home-action-btn:hover {
+  background-color: var(--secondary);
+}
+
+/* Owner Home Page - Sequential Sections */
+.owner-home-vehicle-section,
+.owner-home-booking-section {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.owner-home-vehicle-section {
+  animation-delay: 0.4s;
+}
+
+.owner-home-booking-section {
+  animation-delay: 0.5s;
+}
+
+/* Vehicle Row */
+.owner-home-vehicle-row {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--medium-gray) var(--light-gray);
+}
+
+.owner-home-vehicle-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.owner-home-vehicle-row::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: 4px;
+}
+
+.owner-home-vehicle-row::-webkit-scrollbar-thumb {
+  background-color: var(--medium-gray);
+  border-radius: 4px;
+}
+
+.owner-home-vehicle-card {
+  min-width: 220px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.owner-home-vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.owner-home-vehicle-image {
+  height: 140px;
+  overflow: hidden;
+}
+
+.owner-home-vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.owner-home-vehicle-card:hover .owner-home-vehicle-image img {
+  transform: scale(1.05);
+}
+
+.owner-home-vehicle-info {
+  padding: 1rem;
+}
+
+.owner-home-vehicle-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+}
+
+.owner-home-vehicle-info p {
+  margin: 0;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.owner-home-vehicle-status {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Booking List */
+.owner-home-booking-list {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .owner-home-vehicle-row {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  
+  .owner-home-vehicle-card {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .owner-home-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .owner-home-add-btn,
+  .owner-home-view-all-btn {
+    width: 100%;
+  }
+}
+/* Ripple Effect */
+.owner-home-action-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.owner-home-action-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.owner-home-action-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .owner-home-main-content {
+    padding: 1.5rem;
+  }
+  
+  .owner-home-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .owner-home-dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .owner-home-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .owner-home-stat-card {
+    padding: 1rem;
+  }
+  
+  .card-content {
+    min-height: 120px;
+  }
+}
+/* footer */
+
+.owner-footer{
+  background-color: black;
+color: white;
+text-align: center;
+padding: 1rem 0;
+font-size: 0.9rem;
+border-top: 1px solid #ccc;
+position: relative;
+bottom: 0;
+width: 100%;
+margin-top: auto;
+}

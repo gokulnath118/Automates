@@ -1,0 +1,1236 @@
+/* Leaser Page Container */
+.leaser-dashboard-container {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+font-family: "Segoe UI", sans-serif;
+background-color: #f6f6f6;
+}
+
+/* Header */
+.leaser-header-container {
+background-color: #000;
+color: #fff;
+padding: 1rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.leaser-header-logo {
+font-size: 1.8rem;
+font-weight: bold;
+color: white;
+}
+
+.leaser-header-nav {
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+}
+
+.leaser-header-link {
+color: white;
+padding: 0.4rem 0.8rem;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.3s ease;
+text-decoration: none;
+}
+
+.leaser-header-link:hover {
+color: gray;
+text-decoration: underline;
+}
+
+/* Main Content */
+.leaser-page-container {
+  background-color: #f4f8ff;
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+font-family: "Segoe UI", sans-serif;
+}
+
+.leaser-main-content {
+flex: 1;
+padding: 2rem;
+text-align: center;
+}
+
+/* Footer */
+.leaser-footer {
+background-color: black;
+color: white;
+text-align: center;
+padding: 1rem 0;
+font-size: 0.9rem;
+border-top: 1px solid #ccc;
+position: relative;
+bottom: 0;
+width: 100%;
+margin-top: auto;
+}
+
+/* profile */
+
+:root {
+  --primary: #000000;
+  --secondary: #333333;
+  --accent: #0d00ff;
+  --error: #DC2626;
+  --light-gray: #F3F4F6;
+  --medium-gray: #E5E7EB;
+  --dark-gray: #6B7280;
+  --white: #FFFFFF;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.leaser-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.leaser-profilemain-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.leaser-profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--primary);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+  animation: scaleIn 0.5s ease-out 0.3s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.leaser-profile-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.leaser-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.leaser-profile-photo:hover img {
+  transform: scale(1.1);
+}
+
+.leaser-profile-info {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 300%;
+  max-width: 500px; /* Increased width */
+  text-align: center;
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+.leaser-profile-info h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  animation: slideDown 0.5s ease-out 0.5s both;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.leaser-profile-info p {
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: var(--dark-gray);
+  text-align: left;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--medium-gray);
+  transition: var(--transition);
+}
+
+.leaser-profile-info strong {
+  color: var(--primary);
+  min-width: 100px;
+  display: inline-block;
+}
+
+.leaser-profile-info input,
+.leaser-profile-info select {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.leaser-profile-info input:focus,
+.leaser-profile-info select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(13, 0, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.leaser-profile-info button {
+  padding: 0.8rem 1.5rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.leaser-profile-info button:first-of-type {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.leaser-profile-info button:last-of-type {
+  background-color: var(--light-gray);
+  color: var(--secondary);
+}
+
+.leaser-profile-info button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaser-profile-info button:active {
+  transform: translateY(0);
+}
+
+.leaser-profile-info button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.leaser-profile-info button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.leaser-profile-info input[type="file"] {
+  padding: 0.5rem;
+  border: 1px dashed var(--medium-gray);
+  background-color: var(--light-gray);
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+.leaser-profile-info input[type="file"]:hover {
+  border-color: var(--accent);
+  background-color: rgba(13, 0, 255, 0.05);
+}
+
+.leaser-profile-info > * {
+  transition: var(--transition);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leaser-profilemain-content {
+    padding: 1rem;
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .leaser-profile-info {
+    padding: 1.5rem;
+  }
+
+  .leaser-profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaser-profile-info {
+    padding: 1rem;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .leaser-profile-info h1 {
+    font-size: 1.5rem;
+    animation: slideDown 0.5s ease-out;
+  }
+
+  .leaser-profile-info button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* search booking */
+
+/* Search Bookings Page Styles */
+.leaser-search-input {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 200px;
+  transition: var(--transition);
+  background-color: var(--white);
+  color: var(--dark-gray);
+}
+
+.leaser-search-input::placeholder {
+  color: var(--primary);
+  opacity: 1;
+}
+
+.leaser-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 0, 255, 0.1);
+}
+
+/* Number input specific styles */
+.leaser-search-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.leaser-search-input[type="number"]::-webkit-outer-spin-button,
+.leaser-search-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.leaser-search-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.leaser-search-main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.leaser-search-main-content h1 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+
+
+/* Search Filters */
+.leaser-search-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.leaser-search-select,
+.leaser-search-date {
+  padding: 0.8rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 200px;
+  transition: var(--transition);
+}
+
+.leaser-search-select:focus,
+.leaser-search-date:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 0, 255, 0.1);
+}
+
+.leaser-search-button {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 120px;
+}
+
+.leaser-search-button:hover {
+  background-color: #0a00cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Message */
+.leaser-search-error {
+  color: var(--error);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 0.8rem;
+  background-color: rgba(220, 38, 38, 0.1);
+  border-radius: 8px;
+}
+
+/* Vehicle List */
+.leaser-search-vehicle-list {
+  margin-top: 2rem;
+}
+
+.leaser-search-vehicle-list h3 {
+  color: var(--secondary);
+  margin-bottom: 1rem;
+}
+.leaser-search-vehicle-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.leaser-search-vehicle-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.leaser-search-vehicle-card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.leaser-search-vehicle-card:hover  .leaser-search-vehicle-image {
+  transform: scale(1.02);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.leaser-search-vehicle-card h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.leaser-search-vehicle-card p {
+  margin: 0.5rem 0;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.leaser-search-vehicle-card p strong {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.vehicle-status {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.vehicle-status.available {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.vehicle-status.not-available {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+}
+
+/* Book Button */
+.leaser-search-book-button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--success);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.leaser-search-book-button:hover:not(:disabled) {
+  background-color: #0e9d71;
+  transform: translateY(-2px);
+}
+
+.leaser-search-book-button:disabled {
+    background-color: var(--medium-gray);
+  cursor: not-allowed;
+}
+
+
+/* Ripple Effect */
+.leaser-search-button,
+.leaser-search-book-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.leaser-search-button::after,
+.leaser-search-book-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.leaser-search-button:focus:not(:active)::after,
+.leaser-search-book-button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leaser-search-main-content {
+    padding: 1.5rem;
+  }
+  
+  .leaser-search-filters {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .leaser-search-select,
+  .leaser-search-date,
+  .leaser-search-button {
+    width: 100%;
+  }
+  
+  .leaser-search-vehicle-card-container {
+    grid-template-columns: 1fr;
+  }
+  .leaser-search-vehicle-card-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .leaser-search-vehicle-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaser-search-vehicle-image {
+    height: 160px;
+  }
+  .leaser-search-main-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .leaser-search-vehicle-card {
+    padding: 1.2rem;
+  }
+}
+
+
+/* Managebooking css */
+/* Manage Bookings Page Styles */
+/* Manage Bookings Page Styles */
+.leaser-managebookings-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.leaser-managebookings-main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.leaser-managebookings-main-content h1 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* Filter Container - Updated as requested */
+.leaser-managebookings-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background-color: #000; /* Black background */
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.leaser-managebookings-filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+.leaser-managebookings-filter-label {
+  font-weight: 500;
+  color: #fff; /* White text */
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.leaser-managebookings-filter-select {
+  padding: 0.8rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 200px;
+  transition: var(--transition);
+  background-color: var(--white);
+  margin-left: auto; /* Pushes selector to right end */
+}
+
+/* Booking List - 3 cards per row */
+.leaser-managebookings-booking-list {
+  margin-top: 1rem;
+}
+
+.leaser-managebookings-booking-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Card Styling - One info per row */
+.leaser-managebookings-booking-card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaser-managebookings-booking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.leaser-managebookings-booking-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Each info on its own row */
+.leaser-managebookings-booking-card h3,
+.leaser-managebookings-booking-card p {
+  margin: 0.5rem 0;
+  display: block;
+  width: 100%;
+}
+
+.leaser-managebookings-booking-card h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.leaser-managebookings-booking-card p {
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.leaser-managebookings-booking-card p strong {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+/* Status Indicators */
+.booking-status {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.booking-status-pending {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.booking-status-approved {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.booking-status-rejected {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+}
+
+/* Cancel Button */
+.leaser-managebookings-cancel-button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--error);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.leaser-managebookings-cancel-button:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .leaser-managebookings-booking-card-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .leaser-managebookings-main-content {
+    padding: 1.5rem;
+  }
+  
+  .leaser-managebookings-booking-card-container {
+    grid-template-columns: 1fr; /* 1 card on mobile */
+  }
+  
+  .leaser-managebookings-filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .leaser-managebookings-filter-select {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaser-managebookings-main-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .leaser-managebookings-booking-card {
+    padding: 1.2rem;
+  }
+  
+  .leaser-managebookings-booking-image {
+    height: 180px;
+  }
+}
+
+/* home */
+/* Leaser Home Page Styles  */
+.leaser-home-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.leaser-home-main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.leaser-home-header {
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+.leaser-home-welcome {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.leaser-home-intro {
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+}
+
+/* Stats Grid */
+.leaser-home-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  animation: scaleIn 0.5s ease-out 0.4s both;
+}
+
+.leaser-home-stat-card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.leaser-home-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.leaser-home-stat-card.total-bookings {
+  border-left: 4px solid var(--accent);
+}
+
+.leaser-home-stat-card.pending-bookings {
+  border-left: 4px solid #FFA500;
+}
+
+.leaser-home-stat-card.approved-bookings {
+  border-left: 4px solid var(--success);
+}
+
+.leaser-home-stat-card.rejected-bookings {
+  border-left: 4px solid var(--error);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.stat-content h3 {
+  color: var(--secondary);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-content p {
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Booking Sections */
+.leaser-home-confirmed-section,
+.leaser-home-pending-section {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.leaser-home-confirmed-section {
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+.leaser-home-pending-section {
+  animation: fadeIn 0.5s ease-out 0.5s both;
+}
+
+.leaser-home-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--primary);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.leaser-home-section-header h2 {
+  color: var(--white);
+  margin: 0;
+}
+
+/* Vehicle Row */
+.leaser-home-vehicle-row {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--medium-gray) var(--light-gray);
+}
+
+.leaser-home-vehicle-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.leaser-home-vehicle-row::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: 4px;
+}
+
+.leaser-home-vehicle-row::-webkit-scrollbar-thumb {
+  background-color: var(--medium-gray);
+  border-radius: 4px;
+}
+
+.leaser-home-vehicle-card {
+  min-width: 220px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.leaser-home-vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.leaser-home-vehicle-image {
+  height: 140px;
+  overflow: hidden;
+}
+
+.leaser-home-vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.leaser-home-vehicle-card:hover .leaser-home-vehicle-image img {
+  transform: scale(1.05);
+}
+
+.leaser-home-vehicle-info {
+  padding: 1rem;
+}
+
+.leaser-home-vehicle-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+}
+
+.leaser-home-vehicle-info p {
+  margin: 0;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.leaser-home-vehicle-status {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.leaser-home-vehicle-status.available {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+/* Booking List */
+.leaser-home-booking-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.leaser-home-booking-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  transition: var(--transition);
+  background-color: var(--white);
+}
+
+.leaser-home-booking-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-info h4 {
+  color: var(--primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.booking-info p {
+  margin: 0.25rem 0;
+  color: var(--dark-gray);
+  font-size: 0.85rem;
+}
+
+.leaser-home-booking-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.leaser-home-booking-status.pending {
+  background-color: rgba(13, 0, 255, 0.1);
+  color: var(--accent);
+}
+
+/* Buttons */
+.leaser-home-view-all-btn,
+.leaser-home-action-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.leaser-home-view-all-btn {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+.leaser-home-action-btn {
+  background-color: var(--primary);
+  color: var(--white);
+  width: 100%;
+  max-width: 200px;
+  margin-top: 1rem;
+}
+
+.leaser-home-view-all-btn:hover {
+  background-color: var(--medium-gray);
+}
+
+.leaser-home-action-btn:hover {
+  background-color: var(--secondary);
+}
+
+/* Empty States */
+.leaser-home-empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--dark-gray);
+}
+
+/* Ripple Effect */
+.leaser-home-view-all-btn,
+.leaser-home-action-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.leaser-home-view-all-btn::after,
+.leaser-home-action-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.leaser-home-view-all-btn:focus:not(:active)::after,
+.leaser-home-action-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leaser-home-main-content {
+    padding: 1.5rem;
+  }
+  
+  .leaser-home-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .leaser-home-vehicle-card {
+    min-width: 180px;
+  }
+  
+  .leaser-home-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .leaser-home-view-all-btn,
+  .leaser-home-action-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaser-home-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .leaser-home-welcome {
+    font-size: 1.5rem;
+  }
+}
