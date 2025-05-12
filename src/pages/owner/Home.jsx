@@ -106,12 +106,6 @@ function OwnerHome() {
           ) : (
             <div className="owner-home-empty-state">
               <p>No vehicles added yet</p>
-              <button 
-                className="owner-home-action-btn"
-                onClick={() => window.location.href = "/owner/vehicle-management"}
-              >
-                Add Your First Vehicle
-              </button>
             </div>
           )}
         </section>
