@@ -1,6 +1,6 @@
 # 🚗 AutoMates - Vehicle Leasing Platform
 
-AutoMates is a full-featured vehicle leasing platform where **Owners** can list vehicles, **Leasers** can search and book them, and **Admins** can manage and monitor the entire system. It’s designed to streamline the rental process with user-friendly dashboards and booking workflows.
+AutoMates is a vehicle leasing platform where **Owners** can list vehicles, **Leasers** can search and book them, and **Admins** can manage and monitor the entire system. It’s designed to streamline the rental process with user-friendly dashboards and booking workflows.
 
 🔗 **Live Demo**: [https://automates-s2zu.vercel.app/](https://automates-s2zu.vercel.app/)
 
