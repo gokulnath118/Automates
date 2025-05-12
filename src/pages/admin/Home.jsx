@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "./admin.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminHome() {
   const [ownersCount, setOwnersCount] = useState(0);
@@ -20,7 +21,7 @@ function AdminHome() {
   const [bikesCount, setBikesCount] = useState(0);
   const [usersData, setUsersData] = useState([]);
   const [bookingsData, setBookingsData] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const vehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
@@ -107,7 +108,7 @@ function AdminHome() {
         <section className="admin-section">
           <div className="admin-section-header">
             <h2>👥 User Management</h2>
-            <button onClick={() => window.location.href = "/admin/users"}>
+            <button onClick={() => navigate("/admin/users")}>
               Manage Users
             </button>
           </div>
@@ -131,7 +132,7 @@ function AdminHome() {
         <section className="admin-section">
           <div className="admin-section-header">
             <h2>🚗 Vehicle Management</h2>
-            <button onClick={() => window.location.href = "/admin/vehicles"}>
+            <button onClick={() => navigate("/admin/vehicles")}>
               Manage Vehicles
             </button>
           </div>
@@ -160,7 +161,7 @@ function AdminHome() {
         <section className="admin-section">
           <div className="admin-section-header">
             <h2>📊 Booking Analytics</h2>
-            <button onClick={() => window.location.href = "/admin/analytics"}>
+            <button onClick={() => navigate("/admin/analytics")}>
               View Analytics
             </button>
           </div>

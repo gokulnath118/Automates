@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./leaser.css";
@@ -9,7 +10,7 @@ function LeaserHome() {
   const [confirmedBookings, setConfirmedBookings] = useState([]);
   const [approvedBookings, setApprovedBookings] = useState([]);
   const [rejectedBookings, setRejectedBookings] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const storedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
     setBookings(storedBookings);
@@ -67,7 +68,7 @@ function LeaserHome() {
             <h2>Confirmed Bookings</h2>
             <button 
               className="leaser-home-view-all-btn"
-              onClick={() => window.location.href = "/leaser/search"}
+              onClick={() => navigate("/leaser/search")}
             >
               Add new Bookings
             </button>
@@ -97,12 +98,6 @@ function LeaserHome() {
           ) : (
             <div className="leaser-home-empty-state">
               <p>No confirmed bookings yet</p>
-              <button 
-                className="leaser-home-action-btn"
-                onClick={() => window.location.href = "/leaser/search"}
-              >
-                Find Vehicles
-              </button>
             </div>
           )}
         </section>
@@ -113,7 +108,7 @@ function LeaserHome() {
             <h2>Pending Bookings</h2>
             <button 
               className="leaser-home-view-all-btn"
-              onClick={() => window.location.href = "/leaser/bookings"}
+              onClick={() => navigate("/leaser/bookings")}
             >
               Manage My Bookings
             </button>
