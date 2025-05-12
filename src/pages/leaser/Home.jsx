@@ -6,20 +6,33 @@ import "./leaser.css";
 
 function LeaserHome() {
   const [bookings, setBookings] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const [pendingBookings, setPendingBookings] = useState([]);
-  const [confirmedBookings, setConfirmedBookings] = useState([]);
   const [approvedBookings, setApprovedBookings] = useState([]);
   const [rejectedBookings, setRejectedBookings] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const storedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
-    setBookings(storedBookings);
+    const storedVehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
 
-    // Categorize bookings based on status
-    setPendingBookings(storedBookings.filter((booking) => booking.status === "pending"));
-    setConfirmedBookings(storedBookings.filter((booking) => booking.status === "approved"));
-    setApprovedBookings(storedBookings.filter((booking) => booking.status === "approved"));
-    setRejectedBookings(storedBookings.filter((booking) => booking.status === "rejected"));
+    setBookings(storedBookings);
+    setVehicles(storedVehicles);
+
+    const getVehicle = (id) => storedVehicles.find(v => v.id === id);
+
+    setPendingBookings(storedBookings
+      .filter((b) => b.status === "pending")
+      .map((b) => ({ ...b, vehicle: getVehicle(b.vehicleId) }))
+    );
+    setApprovedBookings(storedBookings
+      .filter((b) => b.status === "approved")
+      .map((b) => ({ ...b, vehicle: getVehicle(b.vehicleId) }))
+    );
+    setRejectedBookings(storedBookings
+      .filter((b) => b.status === "rejected")
+      .map((b) => ({ ...b, vehicle: getVehicle(b.vehicleId) }))
+    );
   }, []);
 
   return (
@@ -30,7 +43,6 @@ function LeaserHome() {
           <h1 className="leaser-home-welcome">Welcome, Leaser</h1>
         </div>
 
-        {/* Leaser Dashboard Stats */}
         <div className="leaser-home-stats-grid">
           <div className="leaser-home-stat-card total-bookings">
             <div className="stat-icon">📋</div>
@@ -62,11 +74,11 @@ function LeaserHome() {
           </div>
         </div>
 
-        {/* Confirmed Bookings Section */}
+        {/* Approved Bookings */}
         <section className="leaser-home-confirmed-section">
           <div className="leaser-home-section-header">
             <h2>Confirmed Bookings</h2>
-            <button 
+            <button
               className="leaser-home-view-all-btn"
               onClick={() => navigate("/leaser/search")}
             >
@@ -74,20 +86,20 @@ function LeaserHome() {
             </button>
           </div>
 
-          {confirmedBookings.length > 0 ? (
+          {approvedBookings.length > 0 ? (
             <div className="leaser-home-vehicle-row">
-              {confirmedBookings.slice(0, 4).map((booking) => (
+              {approvedBookings.map((booking) => (
                 <div key={booking.id} className="leaser-home-vehicle-card">
                   <div className="leaser-home-vehicle-image">
-                    <img 
-                      src={booking.vehicleImage || "/default-car-image.jpg"} 
-                      alt={booking.vehicleName} 
+                    <img
+                      src={booking.vehicle?.image || "/default-car-image.jpg"}
+                      alt={booking.vehicle?.name || "Vehicle"}
                     />
                   </div>
                   <div className="leaser-home-vehicle-info">
-                    <h4>{booking.vehicleName}</h4>
-                    <p><strong>Vehicle No:</strong> {booking.vehicleNo}</p>
-                    <p><strong>Owner:</strong> {booking.ownerName}</p>
+                    <h4>{booking.vehicle?.name}</h4>
+                    <p><strong>Vehicle No:</strong> {booking.vehicle?.vehicleNo}</p>
+                    <p><strong>Contact:</strong> {booking.vehicle?.mobileNo}</p>
                     <span className="leaser-home-vehicle-status available">
                       Confirmed
                     </span>
@@ -102,11 +114,11 @@ function LeaserHome() {
           )}
         </section>
 
-        {/* Pending Bookings Section */}
+        {/* Pending Bookings */}
         <section className="leaser-home-pending-section">
           <div className="leaser-home-section-header">
             <h2>Pending Bookings</h2>
-            <button 
+            <button
               className="leaser-home-view-all-btn"
               onClick={() => navigate("/leaser/bookings")}
             >
@@ -116,12 +128,11 @@ function LeaserHome() {
 
           {pendingBookings.length > 0 ? (
             <div className="leaser-home-booking-list">
-              {pendingBookings.slice(0, 3).map((booking) => (
+              {pendingBookings.map((booking) => (
                 <div key={booking.id} className="leaser-home-booking-card">
                   <div className="booking-info">
-                    <h4>{booking.vehicleName}</h4>
-                    <p><strong>Owner:</strong> {booking.ownerName}</p>
-                    <p><strong>Contact:</strong> {booking.ownerMobileNo}</p>
+                    <h4>{booking.vehicle?.name}</h4>
+                    <p><strong>Contact:</strong> {booking.vehicle?.mobileNo}</p>
                   </div>
                   <span className="leaser-home-booking-status pending">
                     {booking.status}

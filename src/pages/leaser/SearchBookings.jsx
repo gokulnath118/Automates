@@ -9,6 +9,7 @@ export default function SearchBookings() {
   const [vehicleType, setVehicleType] = useState("car");
   const [carType, setCarType] = useState("");
   const [fuelType, setFuelType] = useState("");
+  const [transmission, setTransmission] = useState("");
   const [pincode, setPincode] = useState("");
   const [minMileage, setMinMileage] = useState("");
   const [date, setDate] = useState("");
@@ -24,7 +25,7 @@ export default function SearchBookings() {
   useEffect(() => {
     handleSearch(); // auto-filter when filter dependencies change
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vehicleType, carType, fuelType, pincode, minMileage, vehicles]);
+  }, [vehicleType, carType, fuelType, transmission, pincode, minMileage, vehicles]);
 
   const handleSearch = () => {
     let filtered = vehicles.filter(
@@ -33,6 +34,7 @@ export default function SearchBookings() {
         vehicle.availability === "yes" &&
         (!date || vehicle.date === date) &&
         (!fuelType || vehicle.fuelType.toLowerCase() === fuelType.toLowerCase()) &&
+        (!transmission || vehicle.transmission.toLowerCase() === transmission.toLowerCase()) &&
         (!pincode || vehicle.pincode === pincode) &&
         (!minMileage || parseInt(vehicle.mileage) >= parseInt(minMileage))
     );
@@ -125,6 +127,16 @@ export default function SearchBookings() {
             <option value="Hybrid">Hybrid</option>
           </select>
 
+          <select
+            value={transmission}
+            onChange={(e) => setTransmission(e.target.value)}
+            className="leaser-search-select"
+          >
+            <option value="">All Transmissions</option>
+            <option value="Manual">Manual</option>
+            <option value="Automatic">Automatic</option>
+          </select>
+
           <input
             type="text"
             placeholder="Pincode"
@@ -170,7 +182,7 @@ export default function SearchBookings() {
                   <h3>{vehicle.name}</h3>
                   <p><strong>Vehicle:</strong> {vehicle.type}</p>
                   {vehicle.type === "car" && (
-                    <p><strong>Car Type:</strong> {vehicle.vehicleCategory}</p>
+                    <p><strong>Car Type:</strong> {vehicle.carType}</p>
                   )}
                   <p><strong>Transmission:</strong> {vehicle.transmission}</p>
                   <p><strong>Fuel Type:</strong> {vehicle.fuelType}</p>
