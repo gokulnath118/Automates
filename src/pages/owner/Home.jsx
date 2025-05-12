@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./owner.css";
 
 function OwnerHome() {
+  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [stats, setStats] = useState({
@@ -78,7 +80,7 @@ function OwnerHome() {
             <h2 style={{color:'white'}}>Your Vehicles</h2>
             <button 
               className="owner-home-add-btn"
-              onClick={() => window.location.href = "/owner/vehicle-management"}
+              onClick={() => navigate("/owner/vehicle-management")}
             >
               + Add Vehicle
             </button>
@@ -113,10 +115,10 @@ function OwnerHome() {
         {/* Booking Management Section */}
         <section className="owner-home-booking-section">
           <div className="owner-home-section-header">
-            <h2 style={{color:"white"}}>Recent Bookings</h2>
+            <h2 style={{color:"white"}}>Recent Bookings Orders</h2>
             <button 
               className="owner-home-view-all-btn"
-              onClick={() => window.location.href = "/owner/booking-management"}
+              onClick={() => navigate("/owner/booking-management")}
             >
               View All Bookings
             </button>
