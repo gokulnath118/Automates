@@ -50,6 +50,8 @@ export default function BookingManagement() {
                   <h4 className="owner-booking-manage-vehicle-name">{b.vehicleName}</h4>
                   <p><strong>Status:</strong> <span className="owner-booking-manage-status-pending">{b.status}</span></p>
                   <p><strong>Leaser:</strong> {b.leaserName}</p>
+                  <p><strong>From:</strong> {b.startDate}</p>
+                  <p><strong>To:</strong> {b.endDate}</p>
                   <div className="owner-booking-manage-action-buttons">
                     <button 
                       onClick={() => handleApprove(b.id)} 
@@ -93,6 +95,8 @@ export default function BookingManagement() {
                 <div key={b.id} className="owner-booking-manage-card processed">
                   <h4 className="owner-booking-manage-vehicle-name">{b.vehicleName}</h4>
                   <p><strong>Leaser:</strong> {b.leaserName}</p>
+                  <p><strong>From:</strong> {b.startDate}</p>
+                  <p><strong>To:</strong> {b.endDate}</p>
                   <p className={`owner-booking-manage-status ${
                     b.status === "approved" ? "approved" : "rejected"
                   }`}>

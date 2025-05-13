@@ -85,7 +85,8 @@ export default function ManageBookings() {
                       {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                     </p>
                     <div className="leaser-managebookings-booking-info">
-                      <p><strong>Date:</strong> {booking.date}</p>
+                      <p><strong>From:</strong> {booking.startDate}</p>
+                      <p><strong>To:</strong> {booking.endDate}</p>
                       <p><strong>Type:</strong> {vehicle?.type}</p>
                       {vehicle?.type === "car" && (
                         <p><strong>Category:</strong> {vehicle?.vehicleCategory}</p>

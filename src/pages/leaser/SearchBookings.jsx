@@ -12,7 +12,8 @@ export default function SearchBookings() {
   const [transmission, setTransmission] = useState("");
   const [pincode, setPincode] = useState("");
   const [minMileage, setMinMileage] = useState("");
-  const [date, setDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [error, setError] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
@@ -23,7 +24,7 @@ export default function SearchBookings() {
   }, []);
 
   useEffect(() => {
-    handleSearch(); // auto-filter when filter dependencies change
+    handleSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vehicleType, carType, fuelType, transmission, pincode, minMileage, vehicles]);
 
@@ -32,7 +33,7 @@ export default function SearchBookings() {
       (vehicle) =>
         vehicle.type === vehicleType &&
         vehicle.availability === "yes" &&
-        (!date || vehicle.date === date) &&
+        (!startDate || vehicle.date === startDate) &&
         (!fuelType || vehicle.fuelType.toLowerCase() === fuelType.toLowerCase()) &&
         (!transmission || vehicle.transmission.toLowerCase() === transmission.toLowerCase()) &&
         (!pincode || vehicle.pincode === pincode) &&
@@ -47,8 +48,13 @@ export default function SearchBookings() {
   };
 
   const handleBooking = (vehicleId) => {
-    if (!date) {
-      setError("Please select a booking date.");
+    if (!startDate || !endDate) {
+      setError("Please select both start and end dates for booking.");
+      return;
+    }
+
+    if (endDate < startDate) {
+      setError("End date cannot be earlier than start date.");
       return;
     }
 
@@ -60,7 +66,8 @@ export default function SearchBookings() {
       ownerName: "Owner Name",
       vehicleName: vehicle.name,
       status: "pending",
-      date
+      startDate,
+      endDate,
     };
 
     const updatedVehicles = vehicles.map((v) =>
@@ -153,13 +160,24 @@ export default function SearchBookings() {
             className="leaser-search-input"
           />
 
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            min={today}
-            className="leaser-search-date"
-          />
+          <div className="leaser-search-date-range">
+            <label>Start Date:</label>
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              min={today}
+              className="leaser-search-date"
+            />
+            <label>End Date:</label>
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              min={startDate || today}
+              className="leaser-search-date"
+            />
+          </div>
 
           <button onClick={handleSearch} className="leaser-search-button">
             Search

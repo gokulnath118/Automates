@@ -23,21 +23,21 @@ function AdminBookingManagement() {
     }
 
     if (startDate) {
-      filtered = filtered.filter((b) => new Date(b.date) >= new Date(startDate));
+      filtered = filtered.filter((b) => new Date(b.startDate) >= new Date(startDate));
     }
 
     if (endDate) {
-      filtered = filtered.filter((b) => new Date(b.date) <= new Date(endDate));
+      filtered = filtered.filter((b) => new Date(b.endDate) <= new Date(endDate));
     }
 
     setFilteredBookings(filtered);
   }, [statusFilter, startDate, endDate, bookings]);
 
   const downloadReport = () => {
-    let csvContent = "Date,Booking ID,Vehicle No.,Status,Leaser,Owner\n";
+    let csvContent = "Start Date,End Date,Booking ID,Vehicle No.,Status,Leaser,Owner\n";
 
     filteredBookings.forEach(booking => {
-      csvContent += `${booking.date},${booking.id},${booking.vehicleNo || 'N/A'},${booking.status},${booking.leaserName},${booking.ownerName}\n`;
+      csvContent += `${booking.startDate},${booking.endDate},${booking.id},${booking.vehicleNo || 'N/A'},${booking.status},${booking.leaserName},${booking.ownerName}\n`;
     });
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -125,7 +125,8 @@ function AdminBookingManagement() {
                     <p><strong>Vehicle No.:</strong> {booking.vehicleNo || 'N/A'}</p>
                     <p><strong>Leaser:</strong> {booking.leaserName}</p>
                     <p><strong>Owner:</strong> {booking.ownerName}</p>
-                    <p><strong>Date:</strong> {booking.date}</p>
+                    <p><strong>Start Date:</strong> {booking.startDate}</p>
+                    <p><strong>End Date:</strong> {booking.endDate}</p>
                   </div>
                 </div>
               ))}
