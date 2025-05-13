@@ -115,15 +115,18 @@ const Signup = () => {
 
             <div className="signup-input-group">
               <label htmlFor="gender">Gender</label>
-              <input
+              <select
                 id="gender"
-                type="text"
-                placeholder="Male/Female/Other"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 className="signup-input"
                 required
-              />
+              >
+                <option value="" disabled>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
 
             <div className="signup-input-group">
