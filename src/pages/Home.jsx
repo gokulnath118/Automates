@@ -16,11 +16,7 @@ const Home = () => {
         
         <div className="hero-content">
           <h2>Your wheels, on demand</h2>
-          <p>Rent or list vehicles with just a few taps</p>
-          <div className="cta-buttons">
-            <Link to="/signup?role=leaser" className="cta-btn black">Find a ride</Link>
-            <Link to="/signup?role=owner" className="cta-btn white">List your vehicle</Link>
-          </div>
+          <p>Rent or list vehicles</p>
         </div>
       </header>
 
@@ -99,17 +95,12 @@ const Home = () => {
       {/* Final CTA */}
       <section className="final-cta">
         <h2>Ready to get started?</h2>
-        <p>Join thousands of vehicle owners and leasers in our community</p>
-        <div className="cta-buttons">
-          <Link to="/signup?role=leaser" className="cta-btn black">Find a ride</Link>
-          <Link to="/signup?role=owner" className="cta-btn white">List your vehicle</Link>
-        </div>
+        <p>Join as vehicle owners and leasers in our community</p>
       </section>
 
       {/* Footer */}
       <footer className="home-footer">
         <div className="footer-content">
-          <div className="footer-logo">AutoMates</div>
           {/* <div className="footer-links">
             <Link to="/about">About</Link>
             <Link to="/safety">Safety</Link>
