@@ -41,8 +41,8 @@ function AdminAnalytics() {
         <p className="admin-analytics-subtext">Analyze platform booking statistics.</p>
 
         <div className="admin-analytics-filters">
-          <label>Start Date:</label>
-          <input
+          {/*<label>Start Date:</label>
+           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
@@ -55,7 +55,7 @@ function AdminAnalytics() {
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             className="admin-analytics-date-filter"
-          />
+          /> */}
 
           <label>Chart Type:</label>
           <select

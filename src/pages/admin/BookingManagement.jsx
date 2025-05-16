@@ -9,10 +9,13 @@ function AdminBookingManagement() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
     const storedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    const storedVehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
     setBookings(storedBookings);
+    setVehicles(storedVehicles);
   }, []);
 
   useEffect(() => {
@@ -33,18 +36,26 @@ function AdminBookingManagement() {
     setFilteredBookings(filtered);
   }, [statusFilter, startDate, endDate, bookings]);
 
+  const getVehicleNo = (booking) => {
+    const match = vehicles.find(
+      (v) => v.id === booking.vehicleId || v.name === booking.vehicleName
+    );
+    return match?.vehicleNo || "N/A";
+  };
+
   const downloadReport = () => {
     let csvContent = "Start Date,End Date,Booking ID,Vehicle No.,Status,Leaser,Owner\n";
 
-    filteredBookings.forEach(booking => {
-      csvContent += `${booking.startDate},${booking.endDate},${booking.id},${booking.vehicleNo || 'N/A'},${booking.status},${booking.leaserName},${booking.ownerName}\n`;
+    filteredBookings.forEach((booking) => {
+      const vehicleNo = getVehicleNo(booking);
+      csvContent += `${booking.startDate},${booking.endDate},${booking.id},${vehicleNo},${booking.status},${booking.leaserName},${booking.ownerName}\n`;
     });
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `bookings_report_${new Date().toISOString().slice(0,10)}.csv`);
+    link.setAttribute('download', `bookings_report_${new Date().toISOString().slice(0, 10)}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -60,7 +71,7 @@ function AdminBookingManagement() {
             <h2 className="admin-booking-management-heading">Booking Management</h2>
             <p className="admin-booking-management-subtext">View and analyze all platform bookings.</p>
           </div>
-          <button 
+          <button
             onClick={downloadReport}
             className="admin-booking-management-download-btn"
             disabled={filteredBookings.length === 0}
@@ -109,8 +120,8 @@ function AdminBookingManagement() {
           {filteredBookings.length > 0 ? (
             <div className="admin-booking-management-booking-cards-container">
               {filteredBookings.map((booking, index) => (
-                <div 
-                  key={booking.id} 
+                <div
+                  key={booking.id}
                   className="admin-booking-management-booking-card"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -122,7 +133,7 @@ function AdminBookingManagement() {
                   </div>
                   <div className="admin-booking-management-card-body">
                     <p><strong>Booking ID:</strong> {booking.id}</p>
-                    <p><strong>Vehicle No.:</strong> {booking.vehicleNo || 'N/A'}</p>
+                    <p><strong>Vehicle No.:</strong> {getVehicleNo(booking)}</p>
                     <p><strong>Leaser:</strong> {booking.leaserName}</p>
                     <p><strong>Owner:</strong> {booking.ownerName}</p>
                     <p><strong>Start Date:</strong> {booking.startDate}</p>

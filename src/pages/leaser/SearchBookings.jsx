@@ -57,13 +57,18 @@ export default function SearchBookings() {
       setError("End date cannot be earlier than start date.");
       return;
     }
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser || loggedInUser.role !== "leaser") {
+      setError("You must be logged in as a leaser to book.");
+      return;
+    }
 
     const vehicle = vehicles.find(v => v.id === vehicleId);
     const newBooking = {
       id: Date.now(),
       vehicleId,
-      leaserName: "Leaser Name",
-      ownerName: "Owner Name",
+      leaserName: loggedInUser.name || loggedInUser.email,
+      ownerName: vehicle.ownerName || vehicle.ownerEmail || "Owner",
       vehicleName: vehicle.name,
       status: "pending",
       startDate,

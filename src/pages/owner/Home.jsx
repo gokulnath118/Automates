@@ -134,7 +134,6 @@ function OwnerHome() {
                     <div className="booking-info">
                       <h4>{booking.leaserName}</h4>
                       <p>Requested: {booking.vehicleName}</p>
-                      <p>Date: {booking.date}</p>
                     </div>
                     <span className={`owner-home-booking-status ${booking.status}`}>
                       {booking.status}

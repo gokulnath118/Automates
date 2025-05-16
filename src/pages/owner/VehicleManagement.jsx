@@ -22,12 +22,17 @@ export default function VehicleManagement() {
   const [fuelType, setFuelType] = useState("petrol");
   const [transmission, setTransmission] = useState("manual");
   const [vehicleCategory, setVehicleCategory] = useState("");
-  const [showForm, setShowForm] = useState(false); // New state
+  const [showForm, setShowForm] = useState(false);
+
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   useEffect(() => {
     const storedVehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
-    setVehicles(storedVehicles);
-  }, []);
+    const userVehicles = storedVehicles.filter(
+      (v) => v.ownerEmail === loggedInUser.email
+    );
+    setVehicles(userVehicles);
+  }, [loggedInUser.email]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -58,22 +63,25 @@ export default function VehicleManagement() {
       seatingCapacity,
       fuelType,
       vehicleCategory,
-      transmission
+      transmission,
+      ownerName: loggedInUser.name || loggedInUser.email || "Owner",
+      ownerEmail: loggedInUser.email,
     };
 
-    let updatedVehicles;
+    let allVehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
     if (editMode) {
-      updatedVehicles = vehicles.map((vehicle) =>
+      allVehicles = allVehicles.map((vehicle) =>
         vehicle.id === editMode ? newVehicle : vehicle
       );
     } else {
-      updatedVehicles = [...vehicles, newVehicle];
+      allVehicles.push(newVehicle);
     }
 
-    setVehicles(updatedVehicles);
-    localStorage.setItem("vehicles", JSON.stringify(updatedVehicles));
+    localStorage.setItem("vehicles", JSON.stringify(allVehicles));
+    const userVehicles = allVehicles.filter(v => v.ownerEmail === loggedInUser.email);
+    setVehicles(userVehicles);
     resetForm();
-    setShowForm(false); // Hide form after adding/updating
+    setShowForm(false);
   };
 
   const resetForm = () => {
@@ -98,6 +106,7 @@ export default function VehicleManagement() {
 
   const handleEdit = (vehicleId) => {
     const vehicle = vehicles.find((v) => v.id === vehicleId);
+    if (!vehicle) return;
     setName(vehicle.name);
     setType(vehicle.type);
     setMobileNo(vehicle.mobileNo);
@@ -114,13 +123,15 @@ export default function VehicleManagement() {
     setTransmission(vehicle.transmission || "manual");
     setVehicleCategory(vehicle.vehicleCategory || "");
     setEditMode(vehicleId);
-    setShowForm(true); // Show form
+    setShowForm(true);
   };
 
   const handleDelete = (vehicleId) => {
-    const updatedVehicles = vehicles.filter((vehicle) => vehicle.id !== vehicleId);
-    setVehicles(updatedVehicles);
+    const allVehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
+    const updatedVehicles = allVehicles.filter((vehicle) => vehicle.id !== vehicleId);
     localStorage.setItem("vehicles", JSON.stringify(updatedVehicles));
+    const userVehicles = updatedVehicles.filter(v => v.ownerEmail === loggedInUser.email);
+    setVehicles(userVehicles);
   };
 
   return (
@@ -156,32 +167,18 @@ export default function VehicleManagement() {
               )}
             </div>
 
-            <input 
-              type="text" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-              placeholder="Vehicle Name" 
-              required 
-            />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Vehicle Name" required />
 
-            <select 
-              className="owner-vehicle-manage-select" 
-              value={type} 
-              onChange={(e) => {
-                setType(e.target.value);
-                setVehicleCategory("");
-              }}
-            >
+            <select className="owner-vehicle-manage-select" value={type} onChange={(e) => {
+              setType(e.target.value);
+              setVehicleCategory("");
+            }}>
               <option value="car">Car</option>
               <option value="bike">Bike</option>
             </select>
 
             {type === "car" && (
-              <select
-                className="owner-vehicle-manage-select"
-                value={vehicleCategory}
-                onChange={(e) => setVehicleCategory(e.target.value)}
-              >
+              <select className="owner-vehicle-manage-select" value={vehicleCategory} onChange={(e) => setVehicleCategory(e.target.value)}>
                 <option value="">Select Car Type</option>
                 <option value="sedan">Sedan</option>
                 <option value="suv">SUV</option>
@@ -193,42 +190,12 @@ export default function VehicleManagement() {
               </select>
             )}
 
-            <input 
-              type="text" 
-              value={mobileNo} 
-              onChange={(e) => setMobileNo(e.target.value)} 
-              placeholder="Mobile No." 
-              required 
-            />
-
-            <input 
-              type="text" 
-              value={vehicleNo} 
-              onChange={(e) => setVehicleNo(e.target.value)} 
-              placeholder="Vehicle No." 
-              required 
-            />
-
-            <input 
-              type="number" 
-              value={rentPerDay} 
-              onChange={(e) => setRentPerDay(e.target.value)} 
-              placeholder="Rent per Day (₹)" 
-              required 
-            />
-
-            <input 
-              type="number" 
-              value={seatingCapacity} 
-              onChange={(e) => setSeatingCapacity(e.target.value)} 
-              placeholder="Seating Capacity" 
-            />
-
-            <select 
-              className="owner-vehicle-manage-select" 
-              value={fuelType} 
-              onChange={(e) => setFuelType(e.target.value)}
-            >
+            <input type="text" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)} placeholder="Mobile No." required />
+            <input type="text" value={vehicleNo} onChange={(e) => setVehicleNo(e.target.value)} placeholder="Vehicle No." required />
+            <input type="number" value={rentPerDay} onChange={(e) => setRentPerDay(e.target.value)} placeholder="Rent per Day (₹)" required />
+            <input type="number" value={seatingCapacity} onChange={(e) => setSeatingCapacity(e.target.value)} placeholder="Seating Capacity" />
+            
+            <select className="owner-vehicle-manage-select" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
               <option value="petrol">Petrol</option>
               <option value="diesel">Diesel</option>
               <option value="electric">Electric</option>
@@ -236,49 +203,17 @@ export default function VehicleManagement() {
               <option value="cng">CNG</option>
             </select>
 
-            <select 
-              className="owner-vehicle-manage-select" 
-              value={transmission} 
-              onChange={(e) => setTransmission(e.target.value)}
-            >
+            <select className="owner-vehicle-manage-select" value={transmission} onChange={(e) => setTransmission(e.target.value)}>
               <option value="manual">Manual</option>
               <option value="automatic">Automatic</option>
             </select>
 
-            <textarea
-              className="owner-vehicle-manage-textarea"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description (features, condition, etc.)"
-            ></textarea>
+            <textarea className="owner-vehicle-manage-textarea" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description (features, condition, etc.)"></textarea>
+            <input type="number" value={mileage} onChange={(e) => setMileage(e.target.value)} placeholder="Mileage (kmpl)" />
+            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Full Address" />
+            <input type="text" value={pincode} onChange={(e) => setPincode(e.target.value)} placeholder="Pincode" pattern="[0-9]{6}" />
 
-            <input 
-              type="number" 
-              value={mileage} 
-              onChange={(e) => setMileage(e.target.value)} 
-              placeholder="Mileage (kmpl)" 
-            />
-
-            <input 
-              type="text" 
-              value={address} 
-              onChange={(e) => setAddress(e.target.value)} 
-              placeholder="Full Address" 
-            />
-
-            <input 
-              type="text" 
-              value={pincode} 
-              onChange={(e) => setPincode(e.target.value)} 
-              placeholder="Pincode" 
-              pattern="[0-9]{6}"
-            />
-
-            <select 
-              className="owner-vehicle-manage-select" 
-              value={availability} 
-              onChange={(e) => setAvailability(e.target.value)}
-            >
+            <select className="owner-vehicle-manage-select" value={availability} onChange={(e) => setAvailability(e.target.value)}>
               <option value="yes">Available</option>
               <option value="no">Not Available</option>
             </select>
@@ -286,15 +221,10 @@ export default function VehicleManagement() {
             <button type="submit" className="owner-vehicle-manage-submit-btn">
               {editMode ? "Update Vehicle" : "Add Vehicle"}
             </button>
-
-            <button 
-              type="button" 
-              className="owner-vehicle-manage-cancel-btn" 
-              onClick={() => {
-                resetForm();
-                setShowForm(false);
-              }}
-            >
+            <button type="button" className="owner-vehicle-manage-cancel-btn" onClick={() => {
+              resetForm();
+              setShowForm(false);
+            }}>
               Cancel
             </button>
           </form>
@@ -310,7 +240,7 @@ export default function VehicleManagement() {
                 </div>
               )}
               <h3>
-                {vehicle.name} 
+                {vehicle.name}
                 {vehicle.type === "car" && vehicle.vehicleCategory && ` (${vehicle.vehicleCategory})`}
                 {vehicle.type === "bike" && " (Bike)"}
               </h3>
@@ -327,18 +257,8 @@ export default function VehicleManagement() {
                 {vehicle.availability === "yes" ? "Available" : "Not Available"}
               </span>
               <div className="owner-vehicle-manage-action-buttons">
-                <button 
-                  onClick={() => handleEdit(vehicle.id)} 
-                  className="owner-vehicle-manage-edit-btn"
-                >
-                  Edit
-                </button>
-                <button 
-                  onClick={() => handleDelete(vehicle.id)} 
-                  className="owner-vehicle-manage-delete-btn"
-                >
-                  Delete
-                </button>
+                <button onClick={() => handleEdit(vehicle.id)} className="owner-vehicle-manage-edit-btn">Edit</button>
+                <button onClick={() => handleDelete(vehicle.id)} className="owner-vehicle-manage-delete-btn">Delete</button>
               </div>
             </div>
           ))}
